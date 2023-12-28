@@ -7,100 +7,71 @@
 
 
 int main(int argc, const char* argv[]) {
-    MatrixGraph ListGraph(9);
-    ListGraph.AddEdge(0, 1);
-    ListGraph.AddEdge(0, 5);
-    ListGraph.AddEdge(1, 2);
-    ListGraph.AddEdge(1, 3);
-    ListGraph.AddEdge(1, 5);
-    ListGraph.AddEdge(1, 6);
-    ListGraph.AddEdge(3, 2);
-    ListGraph.AddEdge(3, 4);
-    ListGraph.AddEdge(3, 6);
-    ListGraph.AddEdge(5, 4);
-    ListGraph.AddEdge(5, 6);
-    ListGraph.AddEdge(6, 4);
-    ListGraph.AddEdge(7, 8);
+    ListGraph ListGraph1(9);
+    ListGraph1.AddEdge(0, 1);
+    ListGraph1.AddEdge(0, 5);
+    ListGraph1.AddEdge(1, 2);
+    ListGraph1.AddEdge(1, 3);
+    ListGraph1.AddEdge(1, 5);
+    ListGraph1.AddEdge(1, 6);
+    ListGraph1.AddEdge(3, 2);
+    ListGraph1.AddEdge(3, 4);
+    ListGraph1.AddEdge(3, 6);
+    ListGraph1.AddEdge(5, 4);
+    ListGraph1.AddEdge(5, 6);
+    ListGraph1.AddEdge(6, 4);
+    ListGraph1.AddEdge(7, 8);
 
-    BFS(ListGraph, [](int vertex) { std::cout << vertex << " "; });
+    std::cout << std::endl << "ListGraph original vertices:" << ListGraph1.VerticesCount() << std::endl;
+    BFS(ListGraph1, [](int vertex) { std::cout << vertex << " "; });
     std::cout << std::endl;
-    DFS(ListGraph, [](int vertex) { std::cout << vertex << " "; });
+    DFS(ListGraph1, [](int vertex) { std::cout << vertex << " "; });
     std::cout << std::endl;
-    for (int vertex : topologicalSort(ListGraph)) {
+    for (int vertex : topologicalSort(ListGraph1)) {
         std::cout << vertex << " ";
     }
     std::cout << std::endl;
 
-    MatrixGraph matrixGraph(9);
-    matrixGraph.AddEdge(0, 1);
-    matrixGraph.AddEdge(0, 5);
-    matrixGraph.AddEdge(1, 2);
-    matrixGraph.AddEdge(1, 3);
-    matrixGraph.AddEdge(1, 5);
-    matrixGraph.AddEdge(1, 6);
-    matrixGraph.AddEdge(3, 2);
-    matrixGraph.AddEdge(3, 4);
-    matrixGraph.AddEdge(3, 6);
-    matrixGraph.AddEdge(5, 4);
-    matrixGraph.AddEdge(5, 6);
-    matrixGraph.AddEdge(6, 4);
-    matrixGraph.AddEdge(7, 8);
-
-    BFS(matrixGraph, [](int vertex) { std::cout << vertex << " "; });
+    ListGraph ListGraph2(ListGraph1);
+    std::cout << std::endl << "ListGraph copy vertices:" << ListGraph1.VerticesCount() << std::endl;
+    BFS(ListGraph1, [](int vertex) { std::cout << vertex << " "; });
     std::cout << std::endl;
-    DFS(matrixGraph, [](int vertex) { std::cout << vertex << " "; });
+    DFS(ListGraph1, [](int vertex) { std::cout << vertex << " "; });
     std::cout << std::endl;
-    for (int vertex : topologicalSort(matrixGraph)) {
+    for (int vertex : topologicalSort(ListGraph1)) {
         std::cout << vertex << " ";
     }
     std::cout << std::endl;
 
-    ArcGraph ArcGraph(9);
-    ArcGraph.AddEdge(0, 1);
-    ArcGraph.AddEdge(0, 5);
-    ArcGraph.AddEdge(1, 2);
-    ArcGraph.AddEdge(1, 3);
-    ArcGraph.AddEdge(1, 5);
-    ArcGraph.AddEdge(1, 6);
-    ArcGraph.AddEdge(3, 2);
-    ArcGraph.AddEdge(3, 4);
-    ArcGraph.AddEdge(3, 6);
-    ArcGraph.AddEdge(5, 4);
-    ArcGraph.AddEdge(5, 6);
-    ArcGraph.AddEdge(6, 4);
-    ArcGraph.AddEdge(7, 8);
-
-    BFS(ArcGraph, [](int vertex) { std::cout << vertex << " "; });
+    MatrixGraph MatrixGraph1(ListGraph1);
+    std::cout << std::endl << "MatrixGraph copy vertices:" << MatrixGraph1.VerticesCount() << std::endl;
+    BFS(MatrixGraph1, [](int vertex) { std::cout << vertex << " "; });
     std::cout << std::endl;
-    DFS(ArcGraph, [](int vertex) { std::cout << vertex << " "; });
+    DFS(MatrixGraph1, [](int vertex) { std::cout << vertex << " "; });
     std::cout << std::endl;
-    for (int vertex : topologicalSort(ArcGraph))
-    {
+    for (int vertex : topologicalSort(MatrixGraph1)) {
         std::cout << vertex << " ";
     }
     std::cout << std::endl;
 
-    SetGraph setGraph(9);
-    setGraph.AddEdge(0, 1);
-    setGraph.AddEdge(0, 5);
-    setGraph.AddEdge(1, 2);
-    setGraph.AddEdge(1, 3);
-    setGraph.AddEdge(1, 5);
-    setGraph.AddEdge(1, 6);
-    setGraph.AddEdge(3, 2);
-    setGraph.AddEdge(3, 4);
-    setGraph.AddEdge(3, 6);
-    setGraph.AddEdge(5, 4);
-    setGraph.AddEdge(5, 6);
-    setGraph.AddEdge(6, 4);
-    setGraph.AddEdge(7, 8);
+    ArcGraph ArcGraph1(MatrixGraph1);
+    std::cout << std::endl << "ArcGraph copy vertices:" << ArcGraph1.VerticesCount() << std::endl;
+    BFS(ArcGraph1, [](int vertex) { std::cout << vertex << " "; });
+    std::cout << std::endl;
+    DFS(ArcGraph1, [](int vertex) { std::cout << vertex << " "; });
+    std::cout << std::endl;
+    for (int vertex : topologicalSort(ArcGraph1)) {
+        std::cout << vertex << " ";
+    }
+    std::cout << std::endl;
 
-    BFS(setGraph, [](int vertex) { std::cout << vertex << " "; });
+    SetGraph SetGraph1(ArcGraph1);
+    std::cout << std::endl << "SetGraph copy vertices:" << SetGraph1.VerticesCount() << std::endl;
+    BFS(SetGraph1, [](int vertex) { std::cout << vertex << " "; });
     std::cout << std::endl;
-    DFS(setGraph, [](int vertex) { std::cout << vertex << " "; });
+    DFS(SetGraph1, [](int vertex) { std::cout << vertex << " "; });
     std::cout << std::endl;
-    for (int vertex : topologicalSort(setGraph))
-    {
+    for (int vertex : topologicalSort(SetGraph1)) {
         std::cout << vertex << " ";
     }
     std::cout << std::endl;
